@@ -1,4 +1,6 @@
 github.com/Th3-S1lenc3/string2morse v0.4.0 h1:M7WcAZcKvG7MsP5ZuZl+uHJ0FnNWBqQlfoQAqnRzaik=
 github.com/Th3-S1lenc3/string2morse v0.4.0/go.mod h1:cKpONjfs1xOVa0nOBH6YPjJcaJPOfoUobKoSwVeWi3Y=
+github.com/Th3-S1lenc3/string2morse v0.5.0 h1:9OlxJ7j/nO1rFrKGaJYzZ2oX0yDbb7i22xDXSrT8jMQ=
+github.com/Th3-S1lenc3/string2morse v0.5.0/go.mod h1:KRnJIswATvDk9ZsVA/PPtI+HmF3VgiD4zjN+dllsaic=
 github.com/cavaliergopher/grab/v3 v3.0.1 h1:4z7TkBfmPjmLAAmkkAZNX/6QJ1nNFdv3SdIHXju0Fr4=
 github.com/cavaliergopher/grab/v3 v3.0.1/go.mod h1:1U/KNnD+Ft6JJiYoYBAimKH2XrYptb8Kl3DFGmsjpq4=
