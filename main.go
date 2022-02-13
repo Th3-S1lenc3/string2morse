@@ -13,10 +13,11 @@ func main() {
   }
 
   message := flag.String("m", "", "String to convert.")
+  appDir := flag.String("appDir", "", "Path to app config dir, if part of larger application.")
 
   flag.Parse()
 
-  err = convert.Init(*message)
+  err = convert.Init(*message, *appDir)
   if err != nil {
     log.Fatal(err)
   }
