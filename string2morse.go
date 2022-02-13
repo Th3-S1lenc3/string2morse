@@ -1,4 +1,4 @@
-package main
+package string2morse
 
 import (
   "encoding/json"

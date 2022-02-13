@@ -4,10 +4,12 @@ import (
   "flag"
   "log"
   "fmt"
+
+  s2m "github.com/Th3-S1lenc3/string2morse"
 )
 
 func main() {
-  convert, err := NewConvert()
+  convert, err := s2m.NewConvert()
   if err != nil {
     log.Fatal(err)
   }

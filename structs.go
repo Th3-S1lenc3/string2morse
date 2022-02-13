@@ -1,4 +1,4 @@
-package main
+package string2morse
 
 type Signals struct {
   Characters []Signal `json:"characters"`
