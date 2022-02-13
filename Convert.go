@@ -143,9 +143,9 @@ func (c *Convert) Init(str string, appDir string) error {
     }
 	}
 
-  notesJsonFilePath := fmt.Sprintf("%s/signals.min.json", configDir)
+  signalsJsonFilePath := fmt.Sprintf("%s/signals.min.json", configDir)
 
-  _, err = os.Stat(notesJsonFilePath)
+  _, err = os.Stat(signalsJsonFilePath)
   if err != nil && os.IsNotExist(err) {
     err = c.DownloadSignals(configDir, "signals.min.json")
     if err != nil {
@@ -153,7 +153,7 @@ func (c *Convert) Init(str string, appDir string) error {
     }
   }
 
-  jsonData, err := ioutil.ReadFile("signals.json")
+  jsonData, err := ioutil.ReadFile(signalsJsonFilePath)
   if err != nil {
     return err
   }
