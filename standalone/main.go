@@ -9,22 +9,19 @@ import (
 )
 
 func main() {
-  convert, err := s2m.NewConvert()
-  if err != nil {
-    log.Fatal(err)
-  }
+  convert := s2m.NewString2Morse()
 
   message := flag.String("m", "", "String to convert.")
   appDir := flag.String("appDir", "", "Path to app config dir, if part of larger application.")
 
   flag.Parse()
 
-  err = convert.Init(*message, *appDir)
+  err = convert.Init(*appDir)
   if err != nil {
     log.Fatal(err)
   }
 
-  morseStr, err := convert.Encode()
+  morseStr, err := convert.Encode(*message)
   if err != nil {
     log.Fatal(err)
   }

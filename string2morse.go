@@ -29,7 +29,12 @@ func (s *String2Morse) GetMorseCode() string {
   return s.morseCodeStr
 }
 
-func (s *String2Morse) Encode() (string, error) {
+func (s *String2Morse) Encode(str string) (string, error) {
+  if str == "" {
+    return "", fmt.Errorf("No string provided.")
+  }
+
+  s.str = strings.ToLower(str)
   strArr := strings.Split(s.str, "")
 
   for i := 0; i < len(strArr); i++ {
@@ -111,12 +116,8 @@ Loop:
   return nil
 }
 
-func (s *String2Morse) Init(str string, appDir string) error {
-  if str == "" {
-    return fmt.Errorf("No string provided.")
-  }
-
-  s.str = strings.ToLower(str)
+func (s *String2Morse) Init(appDir string) error {
+  s.str = ""
   s.morseCodeStr = ""
 
   if appDir == "" {
