@@ -30,6 +30,8 @@ func (s *String2Morse) GetMorseCode() string {
 }
 
 func (s *String2Morse) Encode(str string) (string, error) {
+  s.morseCodeStr = ""
+
   if str == "" {
     return "", fmt.Errorf("No string provided.")
   }
