@@ -11,43 +11,43 @@ import (
   "github.com/cavaliergopher/grab/v3"
 )
 
-type Convert struct {
+type String2Morse struct {
   str string
   morseCodeStr string
   dictionary Signals
 }
 
-func NewConvert() (*Convert, error) {
-  return &Convert{}, nil
+func NewString2Morse() *String2Morse {
+  return &String2Morse{}
 }
 
-func (c *Convert) GetDictionary() Signals {
-  return c.dictionary
+func (s *String2Morse) GetDictionary() Signals {
+  return s.dictionary
 }
 
-func (c *Convert) GetMorseCode() string {
-  return c.morseCodeStr
+func (s *String2Morse) GetMorseCode() string {
+  return s.morseCodeStr
 }
 
-func (c *Convert) Encode() (string, error) {
-  strArr := strings.Split(c.str, "")
+func (s *String2Morse) Encode() (string, error) {
+  strArr := strings.Split(s.str, "")
 
   for i := 0; i < len(strArr); i++ {
-    signal, err := c.getSignalForCharacter(strArr[i])
+    signal, err := s.getSignalForCharacter(strArr[i])
     if err != nil {
       return "", err
     }
 
-    c.morseCodeStr += signal
+    s.morseCodeStr += signal
     if signal != "/" {
-      c.morseCodeStr += "/"
+      s.morseCodeStr += "/"
     }
   }
 
-  return c.morseCodeStr, nil
+  return s.morseCodeStr, nil
 }
 
-func (c *Convert) getSignalForCharacter(character string) (string, error) {
+func (s *String2Morse) getSignalForCharacter(character string) (string, error) {
   if character == "" {
     return "", fmt.Errorf("Invalid character: \"%s\"", character)
   }
@@ -56,7 +56,7 @@ func (c *Convert) getSignalForCharacter(character string) (string, error) {
     return "/", nil
   }
 
-  characters := c.dictionary.Characters
+  characters := s.dictionary.Characters
 
   for i := 0; i < len(characters); i++ {
     signal := characters[i]
@@ -69,7 +69,7 @@ func (c *Convert) getSignalForCharacter(character string) (string, error) {
   return "", fmt.Errorf("Not Found.")
 }
 
-func (c *Convert) DownloadSignals(configDir string, fileName string) error {
+func (s *String2Morse) DownloadSignals(configDir string, fileName string) error {
   fmt.Printf("Cannot find \"%s\" in \"%s\"\n", fileName, configDir)
 
   remoteFileURL := "https://raw.githubusercontent.com/Th3-S1lenc3/string2morse/master/json/signals.min.json"
@@ -111,13 +111,13 @@ Loop:
   return nil
 }
 
-func (c *Convert) Init(str string, appDir string) error {
+func (s *String2Morse) Init(str string, appDir string) error {
   if str == "" {
     return fmt.Errorf("No string provided.")
   }
 
-  c.str = strings.ToLower(str)
-  c.morseCodeStr = ""
+  s.str = strings.ToLower(str)
+  s.morseCodeStr = ""
 
   if appDir == "" {
     cwd, err := os.UserConfigDir()
@@ -147,7 +147,7 @@ func (c *Convert) Init(str string, appDir string) error {
 
   _, err = os.Stat(signalsJsonFilePath)
   if err != nil && os.IsNotExist(err) {
-    err = c.DownloadSignals(configDir, "signals.min.json")
+    err = s.DownloadSignals(configDir, "signals.min.json")
     if err != nil {
       return err
     }
@@ -158,7 +158,7 @@ func (c *Convert) Init(str string, appDir string) error {
     return err
   }
 
-  err = json.Unmarshal(jsonData, &c.dictionary)
+  err = json.Unmarshal(jsonData, &s.dictionary)
   if err != nil {
     return err
   }
